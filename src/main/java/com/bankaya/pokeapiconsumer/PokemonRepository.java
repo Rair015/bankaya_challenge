@@ -12,20 +12,24 @@ public class PokemonRepository {
 
     @PostConstruct
     public void initData() {
-        Pokemon bulbasaur = new Pokemon();
+        ObjectFactory factory = new ObjectFactory();
+
+        Pokemon bulbasaur = factory.createPokemon();
         bulbasaur.setId(1);
         bulbasaur.setName("bulbasaur");
         pokemonList.put(bulbasaur.getName(), bulbasaur);
 
-        Pokemon charmander = new Pokemon();
-        bulbasaur.setId(2);
-        bulbasaur.setName("charmander");
+        Pokemon charmander = factory.createPokemon();
+        charmander.setId(2);
+        charmander.setName("charmander");
         pokemonList.put(charmander.getName(), charmander);
 
-        Pokemon squirtle = new Pokemon();
-        bulbasaur.setId(3);
-        bulbasaur.setName("squirtle");
+        Pokemon squirtle = factory.createPokemon();
+        squirtle.setId(3);
+        squirtle.setName("squirtle");
         pokemonList.put(squirtle.getName(), squirtle);
+
+        System.out.println("pokemon initialized: " + pokemonList);
     }
 
     public Pokemon findPokemon(String name) {

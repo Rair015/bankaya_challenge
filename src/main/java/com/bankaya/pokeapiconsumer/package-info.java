@@ -5,5 +5,5 @@
 // Generado el: 2024.07.07 a las 10:55:29 AM CST 
 //
 
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.bankaya.com/pokeapiconsumer/", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.bankaya.com/pokeapiconsumer", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.bankaya.pokeapiconsumer;
