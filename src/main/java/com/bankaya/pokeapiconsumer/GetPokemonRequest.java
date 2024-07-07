@@ -11,20 +11,20 @@ package com.bankaya.pokeapiconsumer;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para pokemon complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="pokemon"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -35,31 +35,14 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "pokemon", propOrder = {
-    "id",
+@XmlType(name = "", propOrder = {
     "name"
 })
-public class Pokemon {
+@XmlRootElement(name = "getPokemonRequest")
+public class GetPokemonRequest {
 
-    protected int id;
     @XmlElement(required = true)
     protected String name;
-
-    /**
-     * Obtiene el valor de la propiedad id.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Define el valor de la propiedad id.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
 
     /**
      * Obtiene el valor de la propiedad name.
