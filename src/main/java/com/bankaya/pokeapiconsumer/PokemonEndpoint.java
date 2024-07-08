@@ -2,6 +2,7 @@ package com.bankaya.pokeapiconsumer;
 
 import com.bankaya.pokeapiconsumer.model.Event;
 import com.bankaya.pokeapiconsumer.repository.EventRepository;
+import com.bankaya.pokeapiconsumer.service.PokemonService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -17,7 +18,8 @@ public class PokemonEndpoint {
 
     @Autowired
     private HttpServletRequest httpServletRequest;
-
+    @Autowired
+    private PokemonService pokemonService;
     @Autowired
     private PokemonRepository repository;
     @Autowired
@@ -30,12 +32,7 @@ public class PokemonEndpoint {
         System.out.println("datetime: " + localDateTime);
         System.out.println("IP: " + httpServletRequest.getRemoteAddr());
         eventRepository.save(new Event(null, httpServletRequest.getRemoteAddr(), localDateTime, "getPokemonId"));
-        GetPokemonResponse response = new GetPokemonResponse();
-        Pokemon pokemon = repository.findPokemon(request.getName());
-        response.setId(pokemon.getId());
 
-        return response;
+        return pokemonService.getPokemonId(request.getName());
     }
-
-
 }
