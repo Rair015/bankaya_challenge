@@ -2,17 +2,21 @@ package com.bankaya.pokeapiconsumer;
 
 import com.bankaya.pokeapiconsumer.model.Event;
 import com.bankaya.pokeapiconsumer.repository.EventRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.print.attribute.standard.MediaSize;
+import java.time.LocalDateTime;
 
 @Endpoint
 public class PokemonEndpoint {
     private static final String NAMESPACE_URI = "http://www.bankaya.com/pokeapiconsumer";
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     @Autowired
     private PokemonRepository repository;
@@ -22,11 +26,16 @@ public class PokemonEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPokemonRequest")
     @ResponsePayload
     public GetPokemonResponse getPokemonId(@RequestPayload GetPokemonRequest request) {
-        eventRepository.save(new Event(null, "564.645.645.65", "2024-07-15", "getPokemonId"));
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println("datetime: " + localDateTime);
+        System.out.println("IP: " + httpServletRequest.getRemoteAddr());
+        eventRepository.save(new Event(null, httpServletRequest.getRemoteAddr(), localDateTime, "getPokemonId"));
         GetPokemonResponse response = new GetPokemonResponse();
         Pokemon pokemon = repository.findPokemon(request.getName());
         response.setId(pokemon.getId());
 
         return response;
     }
+
+
 }
