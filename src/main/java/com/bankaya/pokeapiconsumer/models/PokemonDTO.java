@@ -1,4 +1,4 @@
-package com.bankaya.pokeapiconsumer.model;
+package com.bankaya.pokeapiconsumer.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
