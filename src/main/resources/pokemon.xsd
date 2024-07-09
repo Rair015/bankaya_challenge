@@ -3,13 +3,23 @@
         xmlns:pk="http://www.bankaya.com/pokeapiconsumer"
         targetNamespace="http://www.bankaya.com/pokeapiconsumer"
         elementFormDefault="qualified">
-    <xs:element name="pokemonByNameRequest">
+
+    <xs:element name="pokemonIdRequest">
         <xs:complexType>
             <xs:all>
                 <xs:element name="name" type="xs:string"/>
             </xs:all>
         </xs:complexType>
     </xs:element>
+    <xs:element name="pokemonAbilitiesRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="name" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+
     <xs:element name="pokemonIdResponse">
         <xs:complexType>
             <xs:all>
@@ -24,19 +34,24 @@
             </xs:all>
         </xs:complexType>
     </xs:element>
-    <xs:element name="pokemonAbilityResponse">
+    <xs:element name="pokemonAbilitiesResponse">
         <xs:complexType>
-            <xs:all>
-                <xs:element name="isHidden" type="xs:boolean"/>
-                <xs:element name="slot" type="xs:string"/>
-                <xs:element name="ability" type="pk:ability"/>
-            </xs:all>
+            <xs:sequence>
+                <xs:element name="abilities" type="pk:pokemonAbilityDetail" maxOccurs="unbounded"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="ability">
-        <xs:all>
+    <xs:complexType name="pokemonAbilityDetail">
+        <xs:sequence>
+            <xs:element name="isHidden" type="xs:boolean"/>
+            <xs:element name="slot" type="xs:int"/>
+            <xs:element name="ability" type="pk:pokemonAbility"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pokemonAbility">
+        <xs:sequence>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="url" type="xs:string"/>
-        </xs:all>
+        </xs:sequence>
     </xs:complexType>
 </xs:schema>

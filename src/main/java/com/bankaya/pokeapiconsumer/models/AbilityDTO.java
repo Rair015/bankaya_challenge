@@ -5,14 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PokemonDTO {
-    private Integer id;
+public class AbilityDTO {
     private String name;
-    private List<AbilityDetailDTO> abilities;
+    private String url;
 }

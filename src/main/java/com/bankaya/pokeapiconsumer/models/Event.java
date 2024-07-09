@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Event {
     @Id
@@ -21,4 +20,10 @@ public class Event {
     private LocalDateTime loggedOn;
 
     private String methodName;
+
+    public Event(String ipOrigin, LocalDateTime loggedOn, String methodName) {
+        this.ipOrigin = ipOrigin;
+        this.loggedOn = loggedOn;
+        this.methodName = methodName;
+    }
 }
