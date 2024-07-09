@@ -1,23 +1,17 @@
 package com.bankaya.pokeapiconsumer.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PokemonDTO {
-    private Integer id;
+@JsonRootName("location_area")
+public class LocationAreaDTO {
     private String name;
-    @JsonProperty("base_experience")
-    private Integer baseExperience;
-    private List<AbilityDTO> abilities;
-    @JsonProperty("held_items")
-    private List<ItemDTO> heldItems;
+    private String url;
 }

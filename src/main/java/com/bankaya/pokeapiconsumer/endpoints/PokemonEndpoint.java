@@ -1,7 +1,17 @@
 package com.bankaya.pokeapiconsumer.endpoints;
 
+import com.bankaya.pokeapiconsumer.PokemonAbilitiesRequest;
+import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
+import com.bankaya.pokeapiconsumer.PokemonBaseExperienceRequest;
+import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
+import com.bankaya.pokeapiconsumer.PokemonHeldItemsRequest;
+import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
+import com.bankaya.pokeapiconsumer.PokemonIdRequest;
 import com.bankaya.pokeapiconsumer.PokemonIdResponse;
-import com.bankaya.pokeapiconsumer.PokemonByNameRequest;
+import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersRequest;
+import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
+import com.bankaya.pokeapiconsumer.PokemonNameResponse;
+import com.bankaya.pokeapiconsumer.PokemonNameRequest;
 import com.bankaya.pokeapiconsumer.models.Event;
 import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;
@@ -25,14 +35,59 @@ public class PokemonEndpoint {
     @Autowired
     private EventRepository eventRepository;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonByNameRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonNameRequest")
     @ResponsePayload
-    public PokemonIdResponse getPokemonId(@RequestPayload PokemonByNameRequest request) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println("datetime: " + localDateTime);
-        System.out.println("IP: " + httpServletRequest.getRemoteAddr());
-        eventRepository.save(new Event(null, httpServletRequest.getRemoteAddr(), localDateTime, "getPokemonId"));
+    public PokemonNameResponse getPokemonName(@RequestPayload PokemonNameRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonName");
+
+        return pokemonService.getPokemonName(request.getId());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonIdRequest")
+    @ResponsePayload
+    public PokemonIdResponse getPokemonId(@RequestPayload PokemonIdRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonId");
 
         return pokemonService.getPokemonId(request.getName());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonBaseExperienceRequest")
+    @ResponsePayload
+    public PokemonBaseExperienceResponse getPokemonBaseExperience(@RequestPayload PokemonBaseExperienceRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonBaseExperience");
+
+        return pokemonService.getPokemonBaseExperience(request.getName());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonAbilitiesRequest")
+    @ResponsePayload
+    public PokemonAbilitiesResponse getPokemonAbilities(@RequestPayload PokemonAbilitiesRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonAbilities");
+
+        return pokemonService.getPokemonAbilities(request.getName());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonHeldItemsRequest")
+    @ResponsePayload
+    public PokemonHeldItemsResponse getPokemonHeldItems(@RequestPayload PokemonHeldItemsRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonHeldItems");
+
+        return pokemonService.getPokemonHeldItems(request.getName());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonLocationAreaEncountersRequest")
+    @ResponsePayload
+    public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(@RequestPayload PokemonLocationAreaEncountersRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonLocationAreaEncounters");
+
+        return pokemonService.getPokemonLocationAreaEncounters(request.getName());
+    }
+
+    private void logEvent(String ipAddress, LocalDateTime dateTime, String methodName) {
+        eventRepository.save(new Event(
+                ipAddress,
+                dateTime,
+                methodName
+        ));
     }
 }
