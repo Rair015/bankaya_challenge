@@ -16,7 +16,6 @@ import com.bankaya.pokeapiconsumer.models.Event;
 import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -27,13 +26,15 @@ import java.time.LocalDateTime;
 @Endpoint
 public class PokemonEndpoint {
     private static final String NAMESPACE_URI = "http://www.bankaya.com/pokeapiconsumer";
+    private final HttpServletRequest httpServletRequest;
+    private final PokemonService pokemonService;
+    private final EventRepository eventRepository;
 
-    @Autowired
-    private HttpServletRequest httpServletRequest;
-    @Autowired
-    private PokemonService pokemonService;
-    @Autowired
-    private EventRepository eventRepository;
+    public PokemonEndpoint(HttpServletRequest httpServletRequest, PokemonService pokemonService, EventRepository eventRepository) {
+        this.httpServletRequest = httpServletRequest;
+        this.pokemonService = pokemonService;
+        this.eventRepository = eventRepository;
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonNameRequest")
     @ResponsePayload
