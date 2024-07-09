@@ -1,4 +1,4 @@
-package com.bankaya.pokeapiconsumer.model;
+package com.bankaya.pokeapiconsumer.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

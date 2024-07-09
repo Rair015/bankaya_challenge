@@ -1,4 +1,4 @@
-package com.bankaya.pokeapiconsumer;
+package com.bankaya.pokeapiconsumer.configs;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -29,14 +29,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setSchema(schema);
-        wsdl11Definition.setPortTypeName("PokePort");
+        wsdl11Definition.setPortTypeName("PokeAPIConsumerPort");
         wsdl11Definition.setTargetNamespace("http://www.bankaya.com/pokeapiconsumer");
 
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema pokeSchema() {
+    public XsdSchema schema() {
         return new SimpleXsdSchema(new ClassPathResource("pokemon.xsd"));
     }
 }

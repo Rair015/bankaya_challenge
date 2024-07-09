@@ -1,7 +1,7 @@
-package com.bankaya.pokeapiconsumer.util;
+package com.bankaya.pokeapiconsumer.utils;
 
-import com.bankaya.pokeapiconsumer.GetPokemonResponse;
-import com.bankaya.pokeapiconsumer.model.PokemonDTO;
+import com.bankaya.pokeapiconsumer.PokemonIdResponse;
+import com.bankaya.pokeapiconsumer.models.PokemonDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -11,5 +11,5 @@ public interface PokemonMapper {
     PokemonMapper mapper = Mappers.getMapper(PokemonMapper.class);
 
     @Mapping(source = "id", target = "id")
-    GetPokemonResponse dtoToResponse(PokemonDTO dto);
+    PokemonIdResponse dtoToResponse(PokemonDTO dto);
 }

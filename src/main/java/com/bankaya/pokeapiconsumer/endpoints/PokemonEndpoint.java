@@ -1,8 +1,10 @@
-package com.bankaya.pokeapiconsumer;
+package com.bankaya.pokeapiconsumer.endpoints;
 
-import com.bankaya.pokeapiconsumer.model.Event;
-import com.bankaya.pokeapiconsumer.repository.EventRepository;
-import com.bankaya.pokeapiconsumer.service.PokemonService;
+import com.bankaya.pokeapiconsumer.PokemonIdResponse;
+import com.bankaya.pokeapiconsumer.PokemonByNameRequest;
+import com.bankaya.pokeapiconsumer.models.Event;
+import com.bankaya.pokeapiconsumer.repositories.EventRepository;
+import com.bankaya.pokeapiconsumer.services.PokemonService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -21,13 +23,11 @@ public class PokemonEndpoint {
     @Autowired
     private PokemonService pokemonService;
     @Autowired
-    private PokemonRepository repository;
-    @Autowired
     private EventRepository eventRepository;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPokemonRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonByNameRequest")
     @ResponsePayload
-    public GetPokemonResponse getPokemonId(@RequestPayload GetPokemonRequest request) {
+    public PokemonIdResponse getPokemonId(@RequestPayload PokemonByNameRequest request) {
         LocalDateTime localDateTime = LocalDateTime.now();
         System.out.println("datetime: " + localDateTime);
         System.out.println("IP: " + httpServletRequest.getRemoteAddr());

@@ -1,8 +1,8 @@
-package com.bankaya.pokeapiconsumer.service;
+package com.bankaya.pokeapiconsumer.services;
 
-import com.bankaya.pokeapiconsumer.GetPokemonResponse;
-import com.bankaya.pokeapiconsumer.model.PokemonDTO;
-import com.bankaya.pokeapiconsumer.util.PokemonMapper;
+import com.bankaya.pokeapiconsumer.PokemonIdResponse;
+import com.bankaya.pokeapiconsumer.models.PokemonDTO;
+import com.bankaya.pokeapiconsumer.utils.PokemonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +13,7 @@ public class PokemonServiceImpl implements PokemonService {
     private RestTemplate restTemplate;
 
     @Override
-    public GetPokemonResponse getPokemonId(String name) {
+    public PokemonIdResponse getPokemonId(String name) {
         PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name, PokemonDTO.class);
         System.out.println(dto);
 
