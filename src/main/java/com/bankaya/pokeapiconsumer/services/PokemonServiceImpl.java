@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
+    private static final String POKEAPI = "http://www.bankaya.com/pokeapiconsumer";
     private final RestTemplate restTemplate;
 
     public PokemonServiceImpl(RestTemplate restTemplate) {
@@ -27,7 +28,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonNameResponse getPokemonName(Integer id) {
-        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + id, PokemonDTO.class);
+        PokemonDTO dto = restTemplate.getForObject(POKEAPI + id, PokemonDTO.class);
         System.out.println(dto);
 
         return PokemonMapper.mapper.dtoToPokemonName(dto);
@@ -35,7 +36,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonIdResponse getPokemonId(String name) {
-        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name, PokemonDTO.class);
+        PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
         System.out.println(dto);
 
         return PokemonMapper.mapper.dtoToPokemonId(dto);
@@ -43,7 +44,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonBaseExperienceResponse getPokemonBaseExperience(String name) {
-        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name, PokemonDTO.class);
+        PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
         System.out.println(dto);
 
         return PokemonMapper.mapper.dtoToPokemonBaseExperience(dto);
@@ -51,7 +52,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonAbilitiesResponse getPokemonAbilities(String name) {
-        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name, PokemonDTO.class);
+        PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
         System.out.println(dto);
 
         PokemonAbilitiesResponse response = new PokemonAbilitiesResponse();
@@ -62,7 +63,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonHeldItemsResponse getPokemonHeldItems(String name) {
-        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name, PokemonDTO.class);
+        PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
         System.out.println(dto);
 
         PokemonHeldItemsResponse response = new PokemonHeldItemsResponse();
@@ -74,7 +75,7 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(String name) {
-        EncounterDTO[] dtos = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name + "/encounters", EncounterDTO[].class);
+        EncounterDTO[] dtos = restTemplate.getForObject(POKEAPI + name + "/encounters", EncounterDTO[].class);
         List<LocationAreaDTO> dtosList = Arrays.stream(dtos).map(EncounterDTO::getLocationArea).collect(Collectors.toList());
         System.out.println("dto: " + dtosList);
 
