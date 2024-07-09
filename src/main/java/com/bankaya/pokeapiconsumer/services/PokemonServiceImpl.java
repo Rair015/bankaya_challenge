@@ -10,7 +10,6 @@ import com.bankaya.pokeapiconsumer.models.EncounterDTO;
 import com.bankaya.pokeapiconsumer.models.LocationAreaDTO;
 import com.bankaya.pokeapiconsumer.models.PokemonDTO;
 import com.bankaya.pokeapiconsumer.utils.PokemonMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,8 +19,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public PokemonServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public PokemonNameResponse getPokemonName(Integer id) {
