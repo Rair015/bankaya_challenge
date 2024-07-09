@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AbilityDTO {
-    private Boolean isHidden;
-    private Integer slot;
-    private AbilityDetailDTO ability;
+public class ItemDetailDTO {
+    private String name;
+    private String url;
 }

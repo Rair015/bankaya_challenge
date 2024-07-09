@@ -2,8 +2,14 @@ package com.bankaya.pokeapiconsumer.endpoints;
 
 import com.bankaya.pokeapiconsumer.PokemonAbilitiesRequest;
 import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
-import com.bankaya.pokeapiconsumer.PokemonIdResponse;
+import com.bankaya.pokeapiconsumer.PokemonBaseExperienceRequest;
+import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
+import com.bankaya.pokeapiconsumer.PokemonHeldItemsRequest;
+import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
 import com.bankaya.pokeapiconsumer.PokemonIdRequest;
+import com.bankaya.pokeapiconsumer.PokemonIdResponse;
+import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersRequest;
+import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
 import com.bankaya.pokeapiconsumer.models.Event;
 import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;
@@ -36,6 +42,14 @@ public class PokemonEndpoint {
         return pokemonService.getPokemonId(request.getName());
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonBaseExperienceRequest")
+    @ResponsePayload
+    public PokemonBaseExperienceResponse getPokemonBaseExperience(@RequestPayload PokemonBaseExperienceRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonBaseExperience");
+
+        return pokemonService.getPokemonBaseExperience(request.getName());
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonAbilitiesRequest")
     @ResponsePayload
     public PokemonAbilitiesResponse getPokemonAbilities(@RequestPayload PokemonAbilitiesRequest request) {
@@ -44,9 +58,25 @@ public class PokemonEndpoint {
         return pokemonService.getPokemonAbilities(request.getName());
     }
 
-    private void logEvent(String ipAddr, LocalDateTime dateTime, String methodName) {
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonHeldItemsRequest")
+    @ResponsePayload
+    public PokemonHeldItemsResponse getPokemonHeldItems(@RequestPayload PokemonHeldItemsRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonHeldItems");
+
+        return pokemonService.getPokemonHeldItems(request.getName());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonLocationAreaEncountersRequest")
+    @ResponsePayload
+    public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(@RequestPayload PokemonLocationAreaEncountersRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonLocationAreaEncounters");
+
+        return pokemonService.getPokemonLocationAreaEncounters(request.getName());
+    }
+
+    private void logEvent(String ipAddress, LocalDateTime dateTime, String methodName) {
         eventRepository.save(new Event(
-                ipAddr,
+                ipAddress,
                 dateTime,
                 methodName
         ));

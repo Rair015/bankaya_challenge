@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AbilityDetailDTO {
-    private Boolean isHidden;
-    private Integer slot;
-    private AbilityDTO ability;
+    private String name;
+    private String url;
 }

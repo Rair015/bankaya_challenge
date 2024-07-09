@@ -1,6 +1,7 @@
 package com.bankaya.pokeapiconsumer.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AbilityDTO {
-    private Boolean isHidden;
-    private Integer slot;
-    private AbilityDetailDTO ability;
+@JsonRootName("location_area")
+public class LocationAreaDTO {
+    private String name;
+    private String url;
 }
