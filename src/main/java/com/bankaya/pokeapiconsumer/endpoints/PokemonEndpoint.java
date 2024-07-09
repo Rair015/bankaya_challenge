@@ -21,7 +21,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Endpoint
 public class PokemonEndpoint {

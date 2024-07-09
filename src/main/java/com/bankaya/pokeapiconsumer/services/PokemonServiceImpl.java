@@ -1,6 +1,5 @@
 package com.bankaya.pokeapiconsumer.services;
 
-import com.bankaya.pokeapiconsumer.*;
 import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
 import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
 import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,7 +64,7 @@ public class PokemonServiceImpl implements PokemonService {
     @Override
     public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(String name) {
         EncounterDTO[] dtos = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + name + "/encounters", EncounterDTO[].class);
-        List<LocationAreaDTO> dtosList = Arrays.stream(dtos).map(encounterDTO -> encounterDTO.getLocationArea()).collect(Collectors.toList());
+        List<LocationAreaDTO> dtosList = Arrays.stream(dtos).map(EncounterDTO::getLocationArea).collect(Collectors.toList());
         System.out.println("dto: " + dtosList);
 
         PokemonLocationAreaEncountersResponse response = new PokemonLocationAreaEncountersResponse();
