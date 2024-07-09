@@ -4,6 +4,14 @@
         targetNamespace="http://www.bankaya.com/pokeapiconsumer"
         elementFormDefault="qualified">
 
+    <!-- REQUESTS -->
+    <xs:element name="pokemonNameRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="id" type="xs:int"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="pokemonIdRequest">
         <xs:complexType>
             <xs:all>
@@ -40,6 +48,14 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- RESPONSES -->
+    <xs:element name="pokemonNameResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="name" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="pokemonIdResponse">
         <xs:complexType>
             <xs:all>
@@ -47,7 +63,6 @@
             </xs:all>
         </xs:complexType>
     </xs:element>
-
     <xs:element name="pokemonBaseExperienceResponse">
         <xs:complexType>
             <xs:all>
@@ -55,7 +70,6 @@
             </xs:all>
         </xs:complexType>
     </xs:element>
-
     <xs:element name="pokemonAbilitiesResponse">
         <xs:complexType>
             <xs:sequence>
@@ -76,7 +90,6 @@
             <xs:element name="url" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-
     <xs:element name="pokemonHeldItemsResponse">
         <xs:complexType>
             <xs:sequence>
@@ -95,7 +108,6 @@
             <xs:element name="url" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-
     <xs:element name="pokemonLocationAreaEncountersResponse">
         <xs:complexType>
             <xs:sequence>

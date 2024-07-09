@@ -10,6 +10,8 @@ import com.bankaya.pokeapiconsumer.PokemonIdRequest;
 import com.bankaya.pokeapiconsumer.PokemonIdResponse;
 import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersRequest;
 import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
+import com.bankaya.pokeapiconsumer.PokemonNameResponse;
+import com.bankaya.pokeapiconsumer.PokemonNameRequest;
 import com.bankaya.pokeapiconsumer.models.Event;
 import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;
@@ -32,6 +34,14 @@ public class PokemonEndpoint {
     private PokemonService pokemonService;
     @Autowired
     private EventRepository eventRepository;
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonNameRequest")
+    @ResponsePayload
+    public PokemonNameResponse getPokemonName(@RequestPayload PokemonNameRequest request) {
+        logEvent(httpServletRequest.getRemoteAddr(), LocalDateTime.now(), "getPokemonName");
+
+        return pokemonService.getPokemonName(request.getId());
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonIdRequest")
     @ResponsePayload

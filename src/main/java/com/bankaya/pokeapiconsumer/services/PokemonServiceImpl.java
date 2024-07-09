@@ -5,6 +5,7 @@ import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
 import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
 import com.bankaya.pokeapiconsumer.PokemonIdResponse;
 import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
+import com.bankaya.pokeapiconsumer.PokemonNameResponse;
 import com.bankaya.pokeapiconsumer.models.EncounterDTO;
 import com.bankaya.pokeapiconsumer.models.LocationAreaDTO;
 import com.bankaya.pokeapiconsumer.models.PokemonDTO;
@@ -21,6 +22,14 @@ import java.util.stream.Collectors;
 public class PokemonServiceImpl implements PokemonService {
     @Autowired
     private RestTemplate restTemplate;
+
+    @Override
+    public PokemonNameResponse getPokemonName(Integer id) {
+        PokemonDTO dto = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + id, PokemonDTO.class);
+        System.out.println(dto);
+
+        return PokemonMapper.mapper.dtoToPokemonName(dto);
+    }
 
     @Override
     public PokemonIdResponse getPokemonId(String name) {
