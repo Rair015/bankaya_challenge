@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
-    private static final String POKEAPI = "http://www.bankaya.com/pokeapiconsumer";
+    private static final String POKEAPI = "https://pokeapi.co/api/v2/pokemon/";
     Logger logger = Logger.getLogger(getClass().getName());
     private final RestTemplate restTemplate;
 
