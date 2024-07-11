@@ -1,11 +1,6 @@
 package com.bankaya.pokeapiconsumer.services;
 
-import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
-import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
-import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
-import com.bankaya.pokeapiconsumer.PokemonIdResponse;
-import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
-import com.bankaya.pokeapiconsumer.PokemonNameResponse;
+import com.bankaya.pokeapiconsumer.*;
 import com.bankaya.pokeapiconsumer.models.EncounterDTO;
 import com.bankaya.pokeapiconsumer.models.LocationAreaDTO;
 import com.bankaya.pokeapiconsumer.models.PokemonDTO;
@@ -54,7 +49,17 @@ public class PokemonServiceImpl implements PokemonService {
         PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
 
         PokemonAbilitiesResponse response = new PokemonAbilitiesResponse();
-        response.getAbility().addAll(PokemonMapper.mapper.dtoToPokemonAbilities(dto.getAbilities()));
+
+        List<PokemonAbility> pokemonAbilities = dto.getAbilities().stream().map(abilityDTO -> {
+            PokemonAbility ability = new PokemonAbility();
+            ability.setAbilityDetail(PokemonMapper.mapper.dtoToPokemonAbilityDetail(abilityDTO.getAbility()));
+            ability.setIsHidden(abilityDTO.getIsHidden());
+            ability.setSlot(abilityDTO.getSlot());
+
+            return ability;
+        }).toList();
+
+        response.getAbility().addAll(pokemonAbilities);
 
         return response;
     }
@@ -64,8 +69,15 @@ public class PokemonServiceImpl implements PokemonService {
         PokemonDTO dto = restTemplate.getForObject(POKEAPI + name, PokemonDTO.class);
 
         PokemonHeldItemsResponse response = new PokemonHeldItemsResponse();
-        response.getItem().addAll(PokemonMapper.mapper.dtoToPokemonItems(dto.getHeldItems()));
 
+        List<PokemonItem> pokemonItems = dto.getHeldItems().stream().map(itemDTO -> {
+            PokemonItem item = new PokemonItem();
+            item.setItemDetail(PokemonMapper.mapper.dtoToPokemonItemDetail(itemDTO.getItem()));
+
+            return item;
+        }).toList();
+
+        response.getItem().addAll(pokemonItems);
         return response;
     }
 
