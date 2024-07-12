@@ -34,7 +34,7 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonNameResponse = (PokemonNameResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonNameResponse.getName(), name);
+        assertEquals(name, pokemonNameResponse.getName());
     }
 
     @When("consumer sends a xml id request with pokemon name {string}")
@@ -55,7 +55,7 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonIdResponse = (PokemonIdResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonIdResponse.getId(), id);
+        assertEquals(id, pokemonIdResponse.getId());
     }
 
     @When("consumer sends a xml locations request with pokemon name {string}")
@@ -76,7 +76,7 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonLocationAreaEncountersResponse = (PokemonLocationAreaEncountersResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonLocationAreaEncountersResponse.getLocationArea().size(), 17);
+        assertEquals(17, pokemonLocationAreaEncountersResponse.getLocationArea().size());
     }
 
     @When("consumer sends a xml held items request with pokemon name {string}")
@@ -97,7 +97,7 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonHeldItemsResponse = (PokemonHeldItemsResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonHeldItemsResponse.getItem().get(0).getItemDetail().getName(), "metal-powder");
+        assertEquals("metal-powder", pokemonHeldItemsResponse.getItem().get(0).getItemDetail().getName());
     }
 
     @When("consumer sends a xml base experience request with pokemon name {string}")
@@ -118,7 +118,7 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonBaseExperienceResponse = (PokemonBaseExperienceResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonBaseExperienceResponse.getBaseExperience(), 300);
+        assertEquals(300, pokemonBaseExperienceResponse.getBaseExperience());
     }
 
     @When("consumer sends a xml abilities request with pokemon name {string}")
@@ -139,6 +139,6 @@ public class CucumberPokemonSteps {
         mockPokemonClient.sendPayload();
         pokemonAbilitiesResponse = (PokemonAbilitiesResponse) jaxbUnmarshaller.unmarshal(mockPokemonClient.responsePayload);
 
-        assertEquals(pokemonAbilitiesResponse.getAbility().size(), 1);
+        assertEquals(1, pokemonAbilitiesResponse.getAbility().size());
     }
 }
