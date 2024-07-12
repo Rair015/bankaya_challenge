@@ -61,7 +61,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonNameRequest")
     @ResponsePayload
-    public PokemonNameResponse getPokemonName(@RequestPayload PokemonNameRequest request) {
+    public PokemonNameResponse getPokemonName(@RequestPayload PokemonNameRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -83,8 +83,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
@@ -95,7 +93,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonIdRequest")
     @ResponsePayload
-    public PokemonIdResponse getPokemonId(@RequestPayload PokemonIdRequest request) {
+    public PokemonIdResponse getPokemonId(@RequestPayload PokemonIdRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -117,8 +115,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
@@ -129,7 +125,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonBaseExperienceRequest")
     @ResponsePayload
-    public PokemonBaseExperienceResponse getPokemonBaseExperience(@RequestPayload PokemonBaseExperienceRequest request) {
+    public PokemonBaseExperienceResponse getPokemonBaseExperience(@RequestPayload PokemonBaseExperienceRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -151,8 +147,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
@@ -163,7 +157,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonAbilitiesRequest")
     @ResponsePayload
-    public PokemonAbilitiesResponse getPokemonAbilities(@RequestPayload PokemonAbilitiesRequest request) {
+    public PokemonAbilitiesResponse getPokemonAbilities(@RequestPayload PokemonAbilitiesRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -185,8 +179,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
@@ -197,7 +189,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonHeldItemsRequest")
     @ResponsePayload
-    public PokemonHeldItemsResponse getPokemonHeldItems(@RequestPayload PokemonHeldItemsRequest request) {
+    public PokemonHeldItemsResponse getPokemonHeldItems(@RequestPayload PokemonHeldItemsRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -219,8 +211,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
@@ -231,7 +221,7 @@ public class PokemonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "pokemonLocationAreaEncountersRequest")
     @ResponsePayload
-    public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(@RequestPayload PokemonLocationAreaEncountersRequest request) {
+    public PokemonLocationAreaEncountersResponse getPokemonLocationAreaEncounters(@RequestPayload PokemonLocationAreaEncountersRequest request) throws JAXBException {
         Instant start = Instant.now();
 
         try {
@@ -253,8 +243,6 @@ public class PokemonEndpoint {
             xmlResponse = sw.toString();
 
             return response;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
         } finally {
             //logging event
             Instant finish = Instant.now();
