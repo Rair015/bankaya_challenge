@@ -6,15 +6,12 @@ import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;
 import com.bankaya.pokeapiconsumer.utils.PokemonIdToXMLAdapter;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.io.StringWriter;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -24,12 +21,13 @@ import java.util.logging.Logger;
 public class PokemonEndpoint {
     Logger logger = Logger.getLogger(getClass().getName());
     private static final String NAMESPACE_URI = "http://www.bankaya.com/pokeapiconsumer";
-    private final PokemonIdToXMLAdapter xmlAdapter = new PokemonIdToXMLAdapter();
+    private final PokemonIdToXMLAdapter xmlAdapter;
     private final HttpServletRequest httpServletRequest;
     private final PokemonService pokemonService;
     private final EventRepository eventRepository;
 
-    public PokemonEndpoint(HttpServletRequest httpServletRequest, PokemonService pokemonService, EventRepository eventRepository) throws JAXBException {
+    public PokemonEndpoint(PokemonIdToXMLAdapter xmlAdapter, HttpServletRequest httpServletRequest, PokemonService pokemonService, EventRepository eventRepository) {
+        this.xmlAdapter = xmlAdapter;
         this.httpServletRequest = httpServletRequest;
         this.pokemonService = pokemonService;
         this.eventRepository = eventRepository;

@@ -18,14 +18,14 @@ public class PokemonIdToXMLAdapter {
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
     }
 
-    public String marshal(PokemonNameRequest request) throws Exception {
+    public String marshal(PokemonNameRequest request) throws JAXBException {
         sw = new StringWriter();
         jaxbMarshaller.marshal(request, sw);
         String xml = sw.toString();
         return xml.replace(System.lineSeparator(), "");
     }
 
-    public String marshal(PokemonNameResponse response) throws Exception {
+    public String marshal(PokemonNameResponse response) throws JAXBException {
         sw = new StringWriter();
         jaxbMarshaller.marshal(response, sw);
         String xml = sw.toString();
