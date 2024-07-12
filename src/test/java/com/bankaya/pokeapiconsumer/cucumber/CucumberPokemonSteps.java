@@ -8,8 +8,6 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 
 public class CucumberPokemonSteps {

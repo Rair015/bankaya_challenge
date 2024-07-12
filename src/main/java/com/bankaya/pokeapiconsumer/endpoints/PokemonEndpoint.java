@@ -1,17 +1,6 @@
 package com.bankaya.pokeapiconsumer.endpoints;
 
-import com.bankaya.pokeapiconsumer.PokemonAbilitiesRequest;
-import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
-import com.bankaya.pokeapiconsumer.PokemonBaseExperienceRequest;
-import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
-import com.bankaya.pokeapiconsumer.PokemonHeldItemsRequest;
-import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
-import com.bankaya.pokeapiconsumer.PokemonIdRequest;
-import com.bankaya.pokeapiconsumer.PokemonIdResponse;
-import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersRequest;
-import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
-import com.bankaya.pokeapiconsumer.PokemonNameResponse;
-import com.bankaya.pokeapiconsumer.PokemonNameRequest;
+import com.bankaya.pokeapiconsumer.*;
 import com.bankaya.pokeapiconsumer.models.Event;
 import com.bankaya.pokeapiconsumer.repositories.EventRepository;
 import com.bankaya.pokeapiconsumer.services.PokemonService;

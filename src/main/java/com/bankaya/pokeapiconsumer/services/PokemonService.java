@@ -1,11 +1,6 @@
 package com.bankaya.pokeapiconsumer.services;
 
-import com.bankaya.pokeapiconsumer.PokemonAbilitiesResponse;
-import com.bankaya.pokeapiconsumer.PokemonBaseExperienceResponse;
-import com.bankaya.pokeapiconsumer.PokemonHeldItemsResponse;
-import com.bankaya.pokeapiconsumer.PokemonIdResponse;
-import com.bankaya.pokeapiconsumer.PokemonLocationAreaEncountersResponse;
-import com.bankaya.pokeapiconsumer.PokemonNameResponse;
+import com.bankaya.pokeapiconsumer.*;
 
 public interface PokemonService {
     PokemonNameResponse getPokemonName(Integer id);

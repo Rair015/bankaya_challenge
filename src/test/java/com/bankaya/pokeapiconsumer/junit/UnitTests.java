@@ -2,6 +2,7 @@ package com.bankaya.pokeapiconsumer.junit;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -15,9 +16,7 @@ import javax.xml.transform.Source;
 import java.io.IOException;
 import java.util.Map;
 
-import org.junit.runner.RunWith;
-
-import static org.springframework.ws.test.server.RequestCreators.*;
+import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
